@@ -14,7 +14,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLyoutRes());
+        setContentView(getLayoutRes());
 
         initView();
         initListener();
@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /* 返回一个Fragment要显示的布局界面 */
-    public abstract int getLyoutRes();
+    public abstract int getLayoutRes();
 
 
     /** 设置控件的监听器 */
