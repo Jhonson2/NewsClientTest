@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".GuideActivity"
+            android:theme="@style/Fullscreen">
+        </activity>
+
         <activity android:name=".MainActivity">
         </activity>
 
