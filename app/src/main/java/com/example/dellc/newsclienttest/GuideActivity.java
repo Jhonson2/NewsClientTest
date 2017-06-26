@@ -45,6 +45,15 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        startAnimation();     //开始显示动画效果
+
+    }
+/*开始显示动画效果*/
+    private void startAnimation() {
+        ivImg.animate()
+                .scaleX(1.2f)
+                .scaleY(1.2f)
+                .setDuration(3000);
 
     }
 }
