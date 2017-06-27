@@ -14,7 +14,7 @@ import android.widget.Toast;
  */
 
 public abstract class BaseFragment extends Fragment{
-    protected View mRoot;
+    protected View mRootView;
     protected Activity mActivity;
 
 
@@ -27,15 +27,15 @@ public abstract class BaseFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (mRoot == null) {
-            mRoot = LayoutInflater.from(getContext())
+        if (mRootView == null) {
+            mRootView = LayoutInflater.from(getContext())
                     .inflate(getLayoutRes(), container, false);
 
             initView();
             initListener();
             initData();
         }
-        return mRoot;
+        return mRootView;
         
     }
     /** 返回一个Fragment要显示的布局界面 */
