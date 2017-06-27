@@ -1,10 +1,14 @@
 package com.example.dellc.newsclienttest;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.RadioGroup;
 
 import com.example.dellc.newsclienttest.fragment.MainFragment01;
@@ -19,6 +23,8 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private ViewPager viewPager;
     private RadioGroup radioGroup;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,23 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         radioGroup= (RadioGroup) findViewById(R.id.radio_group);
         initViewPager();
+        initNavigationView();
+    }
+    /*  侧滑菜单点击监听*/
+    private void initNavigationView() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView= (NavigationView) findViewById(R.id.navigation_view);
+
+        // 侧滑菜单点击监听
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // 点击侧滑菜单item时，通过DrawerLayout关闭侧滑菜单
+                showToast("" + item.getTitle());
+                drawerLayout.closeDrawers();
+                return false;
+            }
+        });
     }
 
     private void initViewPager() {
