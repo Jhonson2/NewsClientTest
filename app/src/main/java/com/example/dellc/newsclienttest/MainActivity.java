@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,8 @@ public class MainActivity extends BaseActivity {
     private RadioGroup radioGroup;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +49,20 @@ public class MainActivity extends BaseActivity {
         initViewPager();
         initNavigationView();
         initToolbar();
+        initDrawerLayout();
+    }
+    //ActionBarDrawerToggle(作用：绑定ToolBar和DrawerLayout)
+    private void initDrawerLayout() {
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, 0,0);
+
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();     // 同步drawerLayout和toolbar的状态
+
     }
 
     // 使用toolBar代替ActionBar,并设置相应属性
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);       // 使用toolbar代替ActionBar
 
         toolbar.setLogo(R.mipmap.ic_launcher);
