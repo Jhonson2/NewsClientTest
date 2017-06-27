@@ -28,6 +28,7 @@
 
     <!--底部选项卡-->
     <RadioGroup
+        android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
