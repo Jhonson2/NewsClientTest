@@ -41,9 +41,10 @@
             android:textSize="12sp"
             android:padding="3dp"
             android:gravity="center"
+            android:checked="true"
             android:button="@null"
-            android:drawableTop="@drawable/home_tab_01_normal"
-            android:textColor="@color/tab_text_normal" />
+            android:drawableTop="@drawable/selector_home_tab_01"
+            android:textColor="@drawable/selector_home_tab" />
 
         <RadioButton
             android:id="@+id/rb_02"
@@ -55,8 +56,8 @@
             android:padding="3dp"
             android:gravity="center"
             android:button="@null"
-            android:drawableTop="@drawable/home_tab_02_normal"
-            android:textColor="@color/tab_text_normal" />
+            android:drawableTop="@drawable/selector_home_tab_02"
+            android:textColor="@drawable/selector_home_tab" />
 
         <RadioButton
             android:id="@+id/rb_03"
@@ -68,8 +69,8 @@
             android:padding="3dp"
             android:gravity="center"
             android:button="@null"
-            android:drawableTop="@drawable/home_tab_03_normal"
-            android:textColor="@color/tab_text_normal" />
+            android:drawableTop="@drawable/selector_home_tab_03"
+            android:textColor="@drawable/selector_home_tab" />
 
         <RadioButton
             android:id="@+id/rb_04"
@@ -81,8 +82,8 @@
             android:gravity="center"
             android:padding="3dp"
             android:button="@null"
-            android:drawableTop="@drawable/home_tab_04_normal"
-            android:textColor="@color/tab_text_normal" />
+            android:drawableTop="@drawable/selector_home_tab_04"
+            android:textColor="@drawable/selector_home_tab" />
 
 
         <RadioButton
@@ -95,8 +96,8 @@
             android:gravity="center"
             android:padding="3dp"
             android:button="@null"
-            android:drawableTop="@drawable/home_tab_05_normal"
-            android:textColor="@color/tab_text_normal" />
+            android:drawableTop="@drawable/selector_home_tab_05"
+            android:textColor="@drawable/selector_home_tab" />
 
     </RadioGroup>
 </LinearLayout>
