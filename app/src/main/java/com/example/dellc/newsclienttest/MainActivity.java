@@ -83,13 +83,16 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.item_01) {
-            showToast("item 01");
+            showToast("标题1");
+            return true;
+        }else if(item.getItemId() == R.id.item_02) {
+            showToast("标题2");
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 //================Toolbar右上角弹出菜单(end)=========================
+
 
     /*  侧滑菜单点击监听*/
     private void initNavigationView() {
