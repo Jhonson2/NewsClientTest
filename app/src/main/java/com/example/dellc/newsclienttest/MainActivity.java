@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -56,9 +57,9 @@ public class MainActivity extends BaseActivity {
 
         //toolbar.setTitle("ToolBar");   // 通过代码设置才生效：app:title="toolbar"
 
-        toolbar.setSubtitle("这是子标题");
+      /*  toolbar.setSubtitle("这是子标题");
         toolbar.setTitleTextColor(Color.RED);
-        toolbar.setSubtitleTextColor(Color.YELLOW);
+        toolbar.setSubtitleTextColor(Color.YELLOW);*/
 
         // 导航栏图标显示
         toolbar.setNavigationIcon(R.drawable.biz_video_pause);
@@ -71,6 +72,24 @@ public class MainActivity extends BaseActivity {
             }
         });*/
     }
+
+    //================Toolbar右上角弹出菜单(begin)=======================
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_option, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.item_01) {
+            showToast("item 01");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+//================Toolbar右上角弹出菜单(end)=========================
 
     /*  侧滑菜单点击监听*/
     private void initNavigationView() {
