@@ -20,7 +20,10 @@ public class MainActivity extends BaseActivity {
     private ViewPager viewPager;
     private RadioGroup radioGroup;
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public int getLayoutRes() {
