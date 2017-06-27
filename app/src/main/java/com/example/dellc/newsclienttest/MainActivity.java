@@ -57,6 +57,32 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+       radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(RadioGroup group, int checkedId) {
+               switch (checkedId){
+                   case R.id.rb_01:
+                       viewPager.setCurrentItem(0);
+                       break;
+
+                   case R.id.rb_02:
+                       viewPager.setCurrentItem(1);
+                       break;
+
+                   case R.id.rb_03:
+                       viewPager.setCurrentItem(2);
+                       break;
+
+                   case R.id.rb_04:
+                       viewPager.setCurrentItem(3);
+                       break;
+
+                   case R.id.rb_05:
+                       viewPager.setCurrentItem(5);
+                       break;
+               }
+           }
+       });
     }
 
     @Override
