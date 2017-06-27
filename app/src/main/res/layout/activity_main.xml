@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -110,7 +112,7 @@
         添加如下属性让侧滑菜单显示在左边：
         android:layout_gravity="left"
     -->
-<LinearLayout
+<!--<LinearLayout
     android:layout_width="350dp"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -123,6 +125,13 @@
         android:text="侧滑菜单"
         android:textColor="#aa000000"
         android:textSize="16sp"/>
-</LinearLayout>
+</LinearLayout>-->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/navigation_view_header"
+        app:menu="@menu/main"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"/>
 
 </android.support.v4.widget.DrawerLayout>
