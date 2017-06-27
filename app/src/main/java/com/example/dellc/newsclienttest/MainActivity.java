@@ -1,5 +1,6 @@
 package com.example.dellc.newsclienttest;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.example.dellc.newsclienttest.fragment.MainFragment01;
@@ -41,7 +44,34 @@ public class MainActivity extends BaseActivity {
         radioGroup= (RadioGroup) findViewById(R.id.radio_group);
         initViewPager();
         initNavigationView();
+        initToolbar();
     }
+
+    // 使用toolBar代替ActionBar,并设置相应属性
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);       // 使用toolbar代替ActionBar
+
+        toolbar.setLogo(R.mipmap.ic_launcher);
+
+        //toolbar.setTitle("ToolBar");   // 通过代码设置才生效：app:title="toolbar"
+
+        toolbar.setSubtitle("这是子标题");
+        toolbar.setTitleTextColor(Color.RED);
+        toolbar.setSubtitleTextColor(Color.YELLOW);
+
+        // 导航栏图标显示
+        toolbar.setNavigationIcon(R.drawable.biz_video_pause);
+
+       /* // 点击toolbar导航栏左上角的图标后，退出当前界面
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });*/
+    }
+
     /*  侧滑菜单点击监听*/
     private void initNavigationView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
