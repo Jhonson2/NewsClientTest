@@ -78,11 +78,47 @@ public class MainActivity extends BaseActivity {
                        break;
 
                    case R.id.rb_05:
-                       viewPager.setCurrentItem(5);
+                       viewPager.setCurrentItem(4);
                        break;
                }
            }
        });
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        radioGroup.check(R.id.rb_01);
+                        break;
+                    case 1:
+                        radioGroup.check(R.id.rb_02);
+                        break;
+                    case 2:
+                        radioGroup.check(R.id.rb_03);
+                        break;
+                    case 3:
+                        radioGroup.check(R.id.rb_04);
+                        break;
+                    case 4:
+                        radioGroup.check(R.id.rb_05);
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
     @Override
