@@ -1,18 +1,28 @@
 package com.example.dellc.newsclienttest.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by dellc on 2017/6/27.
  */
 
 public abstract class BaseFragment extends Fragment{
-    private View mRoot;
+    protected View mRoot;
+    protected Activity mActivity;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mActivity=getActivity();
+    }
 
     @Nullable
     @Override
@@ -40,4 +50,14 @@ public abstract class BaseFragment extends Fragment{
 
     /** 初始化数据 */
     protected abstract void initData();
+
+    private Toast mToast;
+
+    public void showToast(String msg) {
+        if (mToast == null) {
+            mToast = Toast.makeText(mActivity, "", Toast.LENGTH_SHORT);
+        }
+        mToast.setText(msg);
+        mToast.show();
+    }
 }
