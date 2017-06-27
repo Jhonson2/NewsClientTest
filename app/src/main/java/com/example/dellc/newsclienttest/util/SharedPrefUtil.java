@@ -1,4 +1,4 @@
-package com.example.dellc.newsclienttest;
+package com.example.dellc.newsclienttest.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

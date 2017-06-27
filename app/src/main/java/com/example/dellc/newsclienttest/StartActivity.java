@@ -3,6 +3,8 @@ package com.example.dellc.newsclienttest;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import com.example.dellc.newsclienttest.util.SharedPrefUtil;
+
 /**
  * Created by dellc on 2017/6/26.
  */
