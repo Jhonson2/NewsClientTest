@@ -75,7 +75,14 @@ public class MainFragment01 extends BaseFragment {
             public int getCount() {
                 return fragments.size();
             }
+
+            @Override   // 返回TabLayout显示的标题
+            public CharSequence getPageTitle(int position) {
+                return titles[position];
+            }
         });
+        //绑定TabLayout和ViewPager,显示TabLayout内容
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
