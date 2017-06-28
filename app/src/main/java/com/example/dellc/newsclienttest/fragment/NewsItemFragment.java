@@ -1,9 +1,14 @@
 package com.example.dellc.newsclienttest.fragment;
 
 import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.example.dellc.newsclienttest.R;
 import com.example.dellc.newsclienttest.adapter.NewsAdapter;
 import com.example.dellc.newsclienttest.base.URLManager;
@@ -103,11 +108,50 @@ public class NewsItemFragment extends BaseFragment{
             return;
         }
         //  (1)显示轮播图
+        //取出轮播图显示的数据作为：第一条新闻数据
+        List<NewsEntity.ResultBean.AdsBean> ads
+                =newsDatas.getResult().get(0).getAds();
+
+        //轮播图广告
+        if(ads !=null && ads.size() >0){
+            View headerView= LayoutInflater.from(getContext())
+                    .inflate(R.layout.list_header,listView,false);
+
+            //查找轮播图控件
+            SliderLayout sliderLayout=
+                    (SliderLayout) headerView.findViewById(R.id.sliding_layout);
+
+            //通过循环取出轮播图显示的数据
+            for (int i = 0; i < ads.size(); i++) {
+                NewsEntity.ResultBean.AdsBean adBean = ads.get(i);
+                TextSliderView sliderView=new TextSliderView(getContext());
+
+                sliderView.description(adBean.getTitle())   //获取轮播图的标题
+                .image(adBean.getImgsrc());                 //获取轮播图的图片
+
+                // 添加子界面
+                sliderLayout.addSlider(sliderView);
+
+                // 设置点击事件
+                sliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                    @Override
+                    public void onSliderClick(BaseSliderView slider) {
+                        showToast(slider.getDescription());
+                    }
+                });
+            }
+            // 添加列表头部布局
+            listView.addHeaderView(headerView);
+
+        }else{//没有轮播图情况
+
+        }
+
+
 
         //（2）显示新闻列表
         NewsAdapter newsAdapter=new NewsAdapter(
                 mActivity,newsDatas.getResult());
-
         listView.setAdapter(newsAdapter);
 
 
