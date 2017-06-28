@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.dellc.newsclienttest.R;
 import com.example.dellc.newsclienttest.bean.NewsEntity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -69,6 +70,8 @@ public final class NewsAdapter extends BaseAdapter {
         tvSource.setText(info.getSource());
         tvComment.setText(info.getReplyCount()+"跟帖");
 
+        //加载图片picasso
+        Picasso.with(context).load(info.getImgsrc()).into(ivIcon);
         return convertView;
     }
 }
