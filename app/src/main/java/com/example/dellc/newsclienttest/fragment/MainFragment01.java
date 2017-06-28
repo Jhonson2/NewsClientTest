@@ -33,7 +33,7 @@ public class MainFragment01 extends BaseFragment {
     @Override
     protected void initView() {
         tabLayout= (TabLayout) mRootView.findViewById(R.id.tab_layout);
-        viewPager= (ViewPager) mRootView.findViewById(R.id.view_pager_02);
+        viewPager= (ViewPager) mRootView.findViewById(R.id.view_pager);
         initViewPager();
 
 
