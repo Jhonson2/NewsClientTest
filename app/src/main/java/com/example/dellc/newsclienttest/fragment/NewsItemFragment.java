@@ -1,9 +1,11 @@
 package com.example.dellc.newsclienttest.fragment;
 
 import android.provider.Settings;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.dellc.newsclienttest.R;
+import com.example.dellc.newsclienttest.adapter.NewsAdapter;
 import com.example.dellc.newsclienttest.base.URLManager;
 import com.example.dellc.newsclienttest.bean.NewsEntity;
 import com.google.gson.Gson;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class NewsItemFragment extends BaseFragment{
     private TextView textView;
+    private ListView listView;
 
     /** 新闻类别id */
     private String channelId;
@@ -45,6 +48,9 @@ public class NewsItemFragment extends BaseFragment{
         textView= (TextView) mRootView.findViewById(R.id.tv_01);
         textView.setText("类别id："+channelId);
 
+        listView= (ListView) mRootView.findViewById(R.id.list_view);
+
+
     }
 
     @Override
@@ -54,6 +60,7 @@ public class NewsItemFragment extends BaseFragment{
     }
     // 请求服务器获取页签详细数据
     private void getDataFromServer() {
+
         String newsUrl = URLManager.getUrl(channelId);
 
         HttpUtils utils = new HttpUtils();
@@ -70,21 +77,40 @@ public class NewsItemFragment extends BaseFragment{
                 json =  json.replace(channelId, "result");
                 Gson gson=new Gson();
 
-                NewsEntity newsEntity=gson.fromJson(json, NewsEntity.class);
-                System.out.println("----解析json:" + newsEntity.getResult().size()+"条数据");
+                NewsEntity newsDatas=gson.fromJson(json, NewsEntity.class);
+                System.out.println("----解析json:" + newsDatas.getResult().size()+"条数据");
                 //列表显示集合
-                List<NewsEntity.ResultBean> listDatas=newsEntity.getResult();
+                List<NewsEntity.ResultBean> listDatas=newsDatas.getResult();
 
 
-                //（3） 显示数据到列表中
-                // showDatas(newsDatas);
+                //（3） 显示数据到列表中(数据 列表项 适配器)
+                showDatas(newsDatas);
             }
 
             @Override//获取失败
             public void onFailure(HttpException error, String msg) {
                 error.printStackTrace();
-                System.out.println("----服务器返回失败:" + error);
+                System.out.println("----服务器返回失败:" + msg);
             }
         });
+    }
+
+    private void showDatas(NewsEntity newsDatas) {
+        if (newsDatas == null
+                || newsDatas.getResult() == null
+                || newsDatas.getResult().size() == 0) {
+            System.out.println("----没有获取到服务器的新闻数据");
+            return;
+        }
+        //  (1)显示轮播图
+
+        //（2）显示新闻列表
+        NewsAdapter newsAdapter=new NewsAdapter(
+                mActivity,newsDatas.getResult());
+
+        listView.setAdapter(newsAdapter);
+
+
+
     }
 }
