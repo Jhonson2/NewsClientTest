@@ -11,4 +11,6 @@
 
     <color name="tab_text_01">#ff333333</color>
     <color name="tab_text_02">#ff9b9b9b</color>
+    <color name="item_text_01">#ff333333</color>
+    <color name="item_text_02">#ff9B9B9B</color>
 </resources>

@@ -13,6 +13,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
+import java.util.List;
+
 /**
  * Created by dellc on 2017/6/27.
  */
@@ -59,21 +61,29 @@ public class NewsItemFragment extends BaseFragment{
 
             @Override// 获取成功
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                //（1）从服务器返回json数据
                 String json=responseInfo.result;
                 System.out.println("----服务器返回的json数据:" + json);
 
-                //替换还本的新闻列表id
+                //（2）解析json数据
+                    //替换还本的新闻列表类别id
                 json =  json.replace(channelId, "result");
                 Gson gson=new Gson();
 
-                NewsEntity newsDatas=gson.fromJson(json, NewsEntity.class);
-                System.out.println("----解析json:" + newsDatas.getResult().size()+"条数据");
+                NewsEntity newsEntity=gson.fromJson(json, NewsEntity.class);
+                System.out.println("----解析json:" + newsEntity.getResult().size()+"条数据");
+                //列表显示集合
+                List<NewsEntity.ResultBean> listDatas=newsEntity.getResult();
+
+
+                //（3） 显示数据到列表中
+                // showDatas(newsDatas);
             }
 
             @Override//获取失败
             public void onFailure(HttpException error, String msg) {
                 error.printStackTrace();
-                System.out.println("----服务器返回失败:" + msg);
+                System.out.println("----服务器返回失败:" + error);
             }
         });
     }
