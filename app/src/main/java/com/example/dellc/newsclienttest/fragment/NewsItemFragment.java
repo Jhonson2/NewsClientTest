@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.example.dellc.newsclienttest.R;
 import com.example.dellc.newsclienttest.base.URLManager;
+import com.example.dellc.newsclienttest.bean.NewsEntity;
+import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -59,6 +61,13 @@ public class NewsItemFragment extends BaseFragment{
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String json=responseInfo.result;
                 System.out.println("----服务器返回的json数据:" + json);
+
+                //替换还本的新闻列表id
+                json =  json.replace(channelId, "result");
+                Gson gson=new Gson();
+
+                NewsEntity newsDatas=gson.fromJson(json, NewsEntity.class);
+                System.out.println("----解析json:" + newsDatas.getResult().size()+"条数据");
             }
 
             @Override//获取失败
