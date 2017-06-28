@@ -1,5 +1,6 @@
 package com.example.dellc.newsclienttest.fragment;
 
+import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,11 @@ import com.example.dellc.newsclienttest.adapter.NewsAdapter;
 import com.example.dellc.newsclienttest.base.URLManager;
 import com.example.dellc.newsclienttest.bean.NewsEntity;
 import com.google.gson.Gson;
+import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.container.MeituanFooter;
+import com.liaoinstan.springview.container.MeituanHeader;
+import com.liaoinstan.springview.widget.SpringView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -51,11 +57,57 @@ public class NewsItemFragment extends BaseFragment{
     @Override
     protected void initView() {
         textView= (TextView) mRootView.findViewById(R.id.tv_01);
+        listView= (ListView) mRootView.findViewById(R.id.list_view);
         textView.setText("类别id："+channelId);
 
-        listView= (ListView) mRootView.findViewById(R.id.list_view);
+        initSpringView();
 
 
+    }
+        /*显示下拉和加载更多*/
+    private void initSpringView() {
+        final SpringView springView= (SpringView) mRootView.findViewById(R.id.spring_view);
+
+        //设置springView的头部和尾部
+        springView.setHeader(new MeituanHeader(getContext()));
+        springView.setFooter(new MeituanFooter(getContext()));
+
+        springView.setType(SpringView.Type.FOLLOW);
+
+        //设置监听器
+        springView.setListener(new SpringView.OnFreshListener() {
+            @Override
+            public void onRefresh() {       //下拉刷新第一页
+                showToast("下拉刷新");
+
+                //请求服务器数据。。。刷新第一页
+                //。。。。
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //延迟2秒后，隐藏springView控件的上拉和下拉提示
+                        springView.onFinishFreshAndLoad();
+                    }
+                },2000);
+            }
+
+            //请求服务器数据。。。加载下一页
+            //。。。
+
+            @Override
+            public void onLoadmore() {         //上拉加载下一页
+                showToast("上拉加载下一页");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //延迟2秒后，隐藏springView控件的上拉和下拉提示
+                        springView.onFinishFreshAndLoad();
+                    }
+                },2000);
+            }
+        });
     }
 
     @Override
