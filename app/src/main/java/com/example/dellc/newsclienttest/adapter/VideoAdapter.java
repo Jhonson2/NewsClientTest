@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dellc.newsclienttest.R;
 import com.example.dellc.newsclienttest.bean.VideoEntity;
@@ -48,7 +49,7 @@ public class VideoAdapter extends RecyclerView.Adapter {
 
     // 刷新列表项中的子控件
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         MyViewHolder holder = (MyViewHolder) viewHolder;
 
         // 列表项对应的数据
@@ -62,6 +63,14 @@ public class VideoAdapter extends RecyclerView.Adapter {
         holder.tvVideoDuration.setText(duration);
             //3 显示视频预览图片
         Picasso.with(context).load(video.getCover()).into(holder.ivVideoImage);
+
+        // 设置列表项点击事件
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     // 有多少个列表项
