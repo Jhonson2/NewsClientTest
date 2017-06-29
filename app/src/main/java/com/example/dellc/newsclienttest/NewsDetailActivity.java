@@ -37,6 +37,7 @@ public class NewsDetailActivity extends BaseActivity {
                 getIntent().getSerializableExtra("news");
 
         String newUrl = newsBean.getUrl();
+        System.out.println("----------"+newUrl);
         webView.loadUrl(newUrl);        // 显示新闻网页数据
     }
 }

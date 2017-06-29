@@ -60,13 +60,19 @@ public class NewsItemFragment extends BaseFragment{
     @Override
     protected void initListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            @Override// parent: 指ListView
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // 点击列表项，跳转到新闻详情界面
-                position--;
+
+                int index=position;
+                // 列表有添加头部,才需要减1
+                if (listView.getHeaderViewsCount() > 0) {
+                    // 列表添加了头部后，第一条新闻数据的索引是从1开始，所以要减1
+                    index = index - 1;
+                }
 
                     // 方式1：
-                NewsEntity.ResultBean newsBean = listDatas.get(position);
+                NewsEntity.ResultBean newsBean = listDatas.get(index);
                     // 方式2：
                 // NewsEntity.ResultBean newsBean = (NewsEntity.ResultBean)
                 //         parent.getItemAtPosition(position);
@@ -204,6 +210,8 @@ public class NewsItemFragment extends BaseFragment{
         //取出轮播图显示的数据作为：第一条新闻数据
         List<NewsEntity.ResultBean.AdsBean> ads
                 =listDatas.get(0).getAds();
+
+        listDatas.remove(0);
 
         //轮播图广告
         if(ads !=null && ads.size() >0){
