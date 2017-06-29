@@ -46,6 +46,39 @@ public class URLManager {
         // http://c.m.163.com/nc/article/headline/T1348647909107/0-20.html
         return "http://c.m.163.com/nc/article/headline/" + channelId + "/0-20.html";
     }
+    /**
+     * 获取分页数据
+     *
+     * @param channelId 新闻类别id
+     * @param pageNo 获取第几页数据
+     * @param pageSize 每页数据有多少条
+     * @return
+     */
+    public static String getUrl(String channelId, int pageNo, int pageSize) {
+        // 第1页： 偏移量为 0,     1页10条,
+        // 第2页： 偏移量为 10,    1页10条,
+        // 第3页： 偏移量为 20,    1页10条,
+        int offset = (pageNo -1) * pageSize;
+        return "http://c.m.163.com/nc/article/headline/"
+                + channelId + "/"+ offset +"-"+ pageSize +".html";
+    }
+
+    /**
+     * 获取分页数据
+     *
+     * @param channelId 新闻类别id
+     * @param pageNo 获取第几页数据
+     * @return
+     */
+    public static String getUrl(String channelId, int pageNo) {
+        int pageSize = 10;
+        // 第1页： 偏移量为 0,     1页10条,
+        // 第2页： 偏移量为 10,    1页10条,
+        // 第3页： 偏移量为 20,    1页10条,
+        int offset = (pageNo -1) * pageSize;
+        return "http://c.m.163.com/nc/article/headline/"
+                + channelId + "/"+ offset +"-"+ pageSize +".html";
+    }
 
     // 视频url路径
     public static final String VideoURL = //

@@ -49,33 +49,6 @@ public final class NewsAdapter extends BaseAdapter {
     }
 
     //返回列表项视图，只要显示列表项时，就会调用此方法
-   /* @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        //1 创建列表项的item视图
-        if(convertView==null){
-            convertView= LayoutInflater.from(context)
-                    .inflate(R.layout.item_news_1,parent,false);
-        }
-
-        // 2 查找列表item中的子控件
-        ImageView ivIcon= (ImageView) convertView.findViewById(R.id.iv_icon);
-        TextView tvTitle= (TextView) convertView.findViewById(R.id.tv_title);
-        TextView tvSource= (TextView) convertView.findViewById(R.id.tv_source);
-        TextView tvComment= (TextView) convertView.findViewById(R.id.tv_comment);
-
-        //3 获取列表项的对应数据（javabean）
-        NewsEntity.ResultBean info=getItem(position);
-
-        // 4 显示列表item中的子控件
-        tvTitle.setText(info.getTitle());
-        tvSource.setText(info.getSource());
-        tvComment.setText(info.getReplyCount()+"跟帖");
-
-        //加载图片picasso
-        Picasso.with(context).load(info.getImgsrc()).into(ivIcon);
-        return convertView;
-    }*/
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -155,4 +128,22 @@ public final class NewsAdapter extends BaseAdapter {
     }
 
 //================多种item的列表显示(end)========================
+
+
+    //================列表显示多种类型的item(end)=========================
+
+    /**
+     * 重置列表的所有的数据，并刷新列表显示
+     * @param listDatas
+     */
+    public void setDatas(List<NewsEntity.ResultBean> listDatas) {
+        this.listDatas = listDatas;
+        notifyDataSetChanged();     // 刷新列表
+    }
+
+    /** 追加数据，并刷新列表显示 */
+    public void appendDatas(List<NewsEntity.ResultBean> listDatas) {
+        this.listDatas.addAll(listDatas);
+        notifyDataSetChanged();     // 刷新列表
+    }
 }
