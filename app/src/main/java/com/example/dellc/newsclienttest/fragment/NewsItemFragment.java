@@ -65,17 +65,17 @@ public class NewsItemFragment extends BaseFragment{
                 // 点击列表项，跳转到新闻详情界面
 
                 int index=position;
-                // 列表有添加头部,才需要减1
+              /*  // 列表有添加头部,才需要减1
                 if (listView.getHeaderViewsCount() > 0) {
                     // 列表添加了头部后，第一条新闻数据的索引是从1开始，所以要减1
                     index = index - 1;
-                }
+                }*/
 
-                    // 方式1：
-                NewsEntity.ResultBean newsBean = listDatas.get(index);
+                /*    // 方式1：
+                NewsEntity.ResultBean newsBean = listDatas.get(index);*/
                     // 方式2：
-                // NewsEntity.ResultBean newsBean = (NewsEntity.ResultBean)
-                //         parent.getItemAtPosition(position);
+                 NewsEntity.ResultBean newsBean = (NewsEntity.ResultBean)
+                        parent.getItemAtPosition(index);
 
                 Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
                 intent.putExtra("news", newsBean);    // 新闻数据传到新闻详情界面 注意：javaBean需要序列化

@@ -59,8 +59,8 @@ public class URLManager {
         // 第2页： 偏移量为 10,    1页10条,
         // 第3页： 偏移量为 20,    1页10条,
         int offset = (pageNo -1) * pageSize;
-        return "http://c.m.163.com/nc/article/headline/"
-                + channelId + "/"+ offset +"-"+ pageSize +".html";
+        return "http://c.m.163.com/nc/article/headline/" + channelId
+                + "/"+offset+"-"+pageSize +".html";
     }
 
     /**
@@ -76,8 +76,8 @@ public class URLManager {
         // 第2页： 偏移量为 10,    1页10条,
         // 第3页： 偏移量为 20,    1页10条,
         int offset = (pageNo -1) * pageSize;
-        return "http://c.m.163.com/nc/article/headline/"
-                + channelId + "/"+ offset +"-"+ pageSize +".html";
+        return "http://c.m.163.com/nc/article/headline/" + channelId
+                + "/"+offset+"-"+pageSize +".html";
     }
 
     // 视频url路径
