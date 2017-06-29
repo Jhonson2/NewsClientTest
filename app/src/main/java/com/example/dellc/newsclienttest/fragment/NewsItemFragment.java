@@ -175,13 +175,19 @@ public class NewsItemFragment extends BaseFragment{
             return;
         }
         //  (1)显示轮播图
+
+        // 如果列表已经添加了头部布局，则先移除
+        if (listView.getHeaderViewsCount() > 0) {
+            listView.removeHeaderView(headerView);
+        }
+
         //取出轮播图显示的数据作为：第一条新闻数据
         List<NewsEntity.ResultBean.AdsBean> ads
                 =listDatas.get(0).getAds();
 
         //轮播图广告
         if(ads !=null && ads.size() >0){
-            View headerView= LayoutInflater.from(getContext())
+            headerView= LayoutInflater.from(getContext())
                     .inflate(R.layout.list_header,listView,false);
 
             //查找轮播图控件
