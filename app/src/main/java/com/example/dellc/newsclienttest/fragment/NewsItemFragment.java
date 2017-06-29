@@ -1,15 +1,18 @@
 package com.example.dellc.newsclienttest.fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.dellc.newsclienttest.NewsDetailActivity;
 import com.example.dellc.newsclienttest.R;
 import com.example.dellc.newsclienttest.adapter.NewsAdapter;
 import com.example.dellc.newsclienttest.base.URLManager;
@@ -56,6 +59,23 @@ public class NewsItemFragment extends BaseFragment{
 
     @Override
     protected void initListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // 点击列表项，跳转到新闻详情界面
+                position--;
+
+                    // 方式1：
+                NewsEntity.ResultBean newsBean = listDatas.get(position);
+                    // 方式2：
+                // NewsEntity.ResultBean newsBean = (NewsEntity.ResultBean)
+                //         parent.getItemAtPosition(position);
+
+                Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                intent.putExtra("news", newsBean);    // 新闻数据传到新闻详情界面 注意：javaBean需要序列化
+                startActivity(intent);
+            }
+        });
 
     }
 
