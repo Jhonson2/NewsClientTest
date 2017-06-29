@@ -70,7 +70,6 @@ public class NewsItemFragment extends BaseFragment{
                     // 列表添加了头部后，第一条新闻数据的索引是从1开始，所以要减1
                     index = index - 1;
                 }*/
-
                 /*    // 方式1：
                 NewsEntity.ResultBean newsBean = listDatas.get(index);*/
                     // 方式2：

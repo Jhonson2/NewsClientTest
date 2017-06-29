@@ -9,7 +9,8 @@
         android:id="@+id/pb_01"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="10dp" />
+        android:background="@color/colorPrimary"
+        android:layout_height="3dp" />
 
     <WebView
         android:id="@+id/web_view"
