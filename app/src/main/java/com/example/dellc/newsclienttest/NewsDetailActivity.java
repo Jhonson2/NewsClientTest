@@ -1,6 +1,8 @@
 package com.example.dellc.newsclienttest;
 
+import android.provider.Settings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.dellc.newsclienttest.bean.NewsEntity;
 
@@ -28,6 +30,7 @@ public class NewsDetailActivity extends BaseActivity {
 
     private void initWebView() {
         webView = (WebView) findViewById(R.id.web_view);
+
     }
 
     @Override
@@ -39,5 +42,8 @@ public class NewsDetailActivity extends BaseActivity {
         String newUrl = newsBean.getUrl();
         System.out.println("----------"+newUrl);
         webView.loadUrl(newUrl);        // 显示新闻网页数据
+
+        // 显示标题栏
+        getSupportActionBar().setTitle(newsBean.getTitle());
     }
 }
