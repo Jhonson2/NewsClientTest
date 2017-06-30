@@ -16,6 +16,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 /**
  * Created by dellc on 2017/6/27.
  */
@@ -89,5 +91,10 @@ public class MainFragment03 extends BaseFragment {
 
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        // 释放资源
+        JCVideoPlayer.releaseAllVideos();
+    }
 }

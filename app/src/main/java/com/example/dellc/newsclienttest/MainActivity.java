@@ -25,6 +25,8 @@ import com.example.dellc.newsclienttest.fragment.MainFragment05;
 import java.util.ArrayList;
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 public class MainActivity extends BaseActivity {
     private ViewPager viewPager;
     private RadioGroup radioGroup;
@@ -213,5 +215,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 释放资源
+        JCVideoPlayer.releaseAllVideos();
     }
 }

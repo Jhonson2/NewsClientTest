@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+
 /**
  * 视频列表适配器
  * Created by dellc on 2017/6/29.
@@ -62,7 +64,16 @@ public class VideoAdapter extends RecyclerView.Adapter {
         String duration = video.getLength() / 60 + "分" + video.getLength() % 60 + "秒";
         holder.tvVideoDuration.setText(duration);
             //3 显示视频预览图片
-        Picasso.with(context).load(video.getCover()).into(holder.ivVideoImage);
+       // Picasso.with(context).load(video.getCover()).into(holder.ivVideoImage);
+
+        // 显示播放次数
+        holder.tvPlayCount.setText(video.getPlayCount() + "");
+        System.out.println("-----次数: " + video.getPlayCount());
+
+        // 显示列表项中的视频
+        // 参数1: 要播放视频的url
+        // 参数2: 视频标题，会显示JCVideoPlayerStandard控件上
+        holder.videoPlayer.setUp(video.getMp4_url(),"");
 
         // 设置列表项点击事件
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +96,7 @@ public class VideoAdapter extends RecyclerView.Adapter {
         private TextView tvVideoTitle;
         private TextView tvVideoDuration;
         private TextView tvPlayCount;
+        private JCVideoPlayerStandard videoPlayer;
 
 
         public MyViewHolder(View itemView) {
@@ -94,6 +106,7 @@ public class VideoAdapter extends RecyclerView.Adapter {
             tvVideoTitle = (TextView) itemView.findViewById(R.id.tv_video_title);
             tvVideoDuration = (TextView) itemView.findViewById(R.id.tv_video_duration);
             tvPlayCount = (TextView) itemView.findViewById(R.id.tv_play_count);
+            videoPlayer = (JCVideoPlayerStandard) itemView.findViewById(R.id.videoplayer_standard);
         }
     }
 }

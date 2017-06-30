@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:foreground="@drawable/selector_video_item"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
     <LinearLayout
@@ -17,15 +17,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!--视频播放控件-->
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:id="@+id/videoplayer_standard"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
             <ImageView
                 android:id="@+id/iv_video_image"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:src="@drawable/biz_video_list_play_icon_big" />
 
