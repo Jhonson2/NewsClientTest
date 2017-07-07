@@ -28,6 +28,8 @@
             android:theme="@style/Fullscreen">
         </activity>
 
+
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -35,6 +37,12 @@
 
         <activity android:name=".NewsDetailActivity"
             android:theme="@style/NewDetailActivity">
+        </activity>
+
+        <!--视频播放界面：横屏显示：landscape-->
+        <activity android:name=".VideoPlayActivity"
+            android:theme="@style/Fullscreen"
+           android:screenOrientation="landscape" >
         </activity>
     </application>
 

@@ -1,6 +1,7 @@
 package com.example.dellc.newsclienttest.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dellc.newsclienttest.R;
+import com.example.dellc.newsclienttest.VideoPlayActivity;
 import com.example.dellc.newsclienttest.bean.VideoEntity;
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +57,7 @@ public class VideoAdapter extends RecyclerView.Adapter {
         MyViewHolder holder = (MyViewHolder) viewHolder;
 
         // 列表项对应的数据
-        VideoEntity.ResultBean video = listDatas.get(position);
+        final VideoEntity.ResultBean video = listDatas.get(position);
 
         // 显示列表项中的子控件
             //1 显示视频标题
@@ -79,7 +81,13 @@ public class VideoAdapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+                String videoUrl=video.getMp4_url();//要播放的视频url
+
+                // 点击列表项时，跳转进入视频播放详情界面
+                Intent intent=new Intent(context, VideoPlayActivity.class);
+                intent.putExtra("video_url",video.getMp4_url());
+                context.startActivity(intent);
+
             }
         });
     }
